@@ -1,0 +1,53 @@
+{
+  "name": "Maldives-Island-Landcover",
+  "images": {
+    "path": "{id}.jpg",
+    "shape": [512, 512]
+  },
+  "segmentation": {
+    "path": "{id}/mask.png",
+    "mask_encoding": "rgb",
+    "mask_area": [0, 0, 512, 512],
+    "score": "f1",
+    "unverified_threshold": 1,
+    "test_images": null
+  },
+  "classes": [
+    {
+      "name": "Deep Water",
+      "description": "Dark ocean water",
+      "colour": [0, 0, 120, 70]
+    },
+    {
+      "name": "Shallow Water",
+      "description": "Lagoon and reef-flat water",
+      "colour": [0, 200, 255, 70]
+    },
+    {
+      "name": "Urban",
+      "description": "Buildings, roads and built surfaces",
+      "colour": [255, 0, 0, 70]
+    },
+    {
+      "name": "Sand",
+      "description": "Beaches and bare sand",
+      "colour": [255, 255, 0, 70]
+    },
+    {
+      "name": "Vegetation",
+      "description": "Trees and green vegetation",
+      "colour": [0, 255, 0, 70]
+    }
+  ],
+  "views": {
+    "RGB": {
+      "description": "JPG RGB image",
+      "type": "image",
+      "data": ["$B1", "$B2", "$B3"]
+    }
+  },
+  "view_groups": {
+    "default": ["RGB"]
+  }
+}
+  
