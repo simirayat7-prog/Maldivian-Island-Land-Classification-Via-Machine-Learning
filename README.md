@@ -1,16 +1,20 @@
 # Cross-Island Land Cover Classification of Maldivian Islands Using Random Forest and Sentinel-2 Imagery
 This project applies machine learning techniques to classify land cover types on Maldivian islands using satellite imagery. The aim is to distinguish between different surface types such as water, vegetation, urban areas, and sand.
 
-In this READ ME: you will find an introduction to the project consisting of a problem description, details about data retrieval, image preprocessing, preparation for machine learning model application and a methodology justifying & evaluating the approach taken so far.
+In this READ ME: 
 
-1.	PROBLEM DESCRIPTION 
-2.	REMOTE SENSING TECHNIQUE 
-3.	STUDY AREA
-4.	DATA SOURCE
-5.	IMAGE PREPROCESSING 
-6.	CLASS DESCRIPTIONS
-7.	MACHINE LEARNING BEGINS 
-8.	LIMITATIONS OF METHODOLOGY
+   1.	PROBLEM DESCRIPTION 
+   2.	REMOTE SENSING TECHNIQUE 
+   3.	STUDY AREA
+   4.	DATA SOURCE
+   5.	IMAGE PREPROCESSING 
+   6.	CLASS DESCRIPTIONS
+   7.	MACHINE LEARNING BEGINS 
+   8.	LIMITATIONS OF METHODOLOGY
+   9.	RESULTS
+   10. EVALUATION
+   11. LIMITATION: CLASS BIAS
+   12. CONCLUSION
 
    
  <img width="759" height="526" alt="image" src="https://github.com/user-attachments/assets/e2c6bc27-336d-4acc-b629-a608c75a3468" />
@@ -81,4 +85,59 @@ The preprocessing and JPG format of the raw satellite data would have significan
 **Model approach:** A Random Forest classifier was used, which does not fully exploit spatial structure in images compared to deep learning approaches such as Convolutional Neural Networks. Only a 3×3-pixel neighbourhood was used to represent each data point. This captures very local information but fails to consider larger spatial patterns such as coastline structure or urban layout. As well as this, each pixel patch is treated independently, ignoring relationships between neighbouring predictions. This can lead to noisy or fragmented classification outputs.
 
 **Now it’s time to take a look at the notebook! There you will find the python code used to train our Random forest Model as well as critical results and evaluation!**
+
+## 9.	Results: 
+
+ <img width="868" height="978" alt="image" src="https://github.com/user-attachments/assets/e6dbe510-55f1-4e31-9973-d608de685ce7" />
+
+*Figure 5: Cross-island validation results showing original satellite imagery, ground truth labels, and model predictions for each island. The Random Forest model was trained on two islands and tested on a third unseen island in each case. While the model successfully captures the overall spatial distribution of major land cover classes, prediction maps show increased noise and misclassification in complex regions, particularly along coastlines and in shallow water areas, highlighting limitations in generalisation.
+Typical confusions in classes are between shallow water & vegetation and shallow water & deep water (common in island 1) as well as urban area & sand (common in island 2).*
+
+
+ <img width="940" height="317" alt="image" src="https://github.com/user-attachments/assets/b6057959-84c0-428a-8abe-f3b1dcf1e8c8" />
+
+*Figure 6: The cross-island validation results show variation in model performance depending on the test island, indicating differences in generalisation. The highest accuracy was achieved when testing on Island 0 (0.834), while the lowest occurred for Island 1 (0.739), suggesting that Island 1 is less well represented by the training data. Island 1's poor prediction could be due to island 2's lagoon water closly resembling vegetation cover and confusing the algorithm. Additionally Island 0 had the 2 strongest mask images to work from enhancing its preidiction and island 1 had the 2 worst.
+From the notebook, Macro F1-scores (0.561–0.662) are consistently lower than weighted F1-scores (0.720–0.836), indicating uneven performance across classes. This suggests that the model performs well on dominant classes but struggles with less represented or more complex classes.
+Overall, the results highlight that model performance is influenced by spatial COLOUR variability between islands, with reduced generalisation to unseen areas.*
+
+
+ <img width="739" height="754" alt="image" src="https://github.com/user-attachments/assets/62c2af14-940f-4a82-9f27-1daeceedb820" />
+
+*Figure 7: Island 0 had the greatest accuracy followed by island 2 and lastly island 1. This is inversely proportional to the initial accuracy of classification by IRIS suggesting that quality training data significantly enhances trained models ability to predict unseen islands.*
+
+
+ <img width="940" height="517" alt="image" src="https://github.com/user-attachments/assets/e33e9cf1-d4dc-4907-8faa-1ace2e90b893" />
+
+*Figure 8: The comparison between patch sizes shows that incorporating spatial context (3×3) does not consistently improve performance over pixel-based classification (1×1). While the 1×1 model achieves the highest accuracy on Island 0 (0.860), the 3×3 model performs better on Island 1 (0.739 vs 0.671), suggesting that spatial context is more beneficial in more complex or heterogeneous environments.
+Performance on Island 2 is nearly identical for both approaches (~0.79), indicating that the additional spatial information provided by 3×3 patches does not always lead to significant improvements. Overall, these results suggest that the benefit of spatial context is dependent on the characteristics of the test environment.*
+
+
+
+ <img width="940" height="616" alt="image" src="https://github.com/user-attachments/assets/2c9ea703-9edc-4539-beeb-b3848b6d1409" />
+
+*Figure 9: The comparison between Random Forest and Extra Trees models shows that performance varies across islands. Random Forest achieves higher accuracy on Island 0 (0.834 vs 0.668), while Extra Trees performs better on Islands 1 and 2 (0.773 vs 0.739 and 0.802 vs 0.791 respectively).
+This suggests that Extra Trees may generalise better to certain unseen environments, while Random Forest performs more strongly when the test data is similar to the training distribution. Overall, both models show comparable performance, with no single model consistently outperforming the other across all islands.*
+
+## 10. Evaluation: 
+The results demonstrate that model performance is influenced more by spatial variability between islands than by model choice or patch size. While both Random Forest and Extra Trees achieve comparable accuracies, performance varies significantly across test islands, with consistently higher accuracy on Island 0 and lower performance on Island 1. This indicates that differences in land cover composition and spectral characteristics affect the model’s ability to generalise to unseen environments.
+The confusion matrices support this observation, revealing systematic misclassification between spectrally similar classes. In particular, frequent confusion occurs between deep and shallow water, as well as between urban and sand classes. These errors are consistent across islands and highlight limitations in the model’s ability to distinguish subtle spectral differences.
+Visual comparison of prediction maps further reinforces these findings. While the model successfully captures the overall structure and spatial distribution of major land cover classes, predictions on unseen islands exhibit increased noise and reduced boundary accuracy, particularly in transitional regions such as coastlines. This suggests that the model is able to learn general patterns but struggles with fine-scale spatial detail.
+The comparison between patch sizes shows that incorporating spatial context (3×3) provides limited improvement over pixel-based classification (1×1), with benefits varying depending on the island. Similarly neither Random Forest or Extra Trees consistently outperforms the other, indicating that model choice has a secondary impact compared to data characteristics.
+Overall, the results suggest that classification performance is primarily constrained by class imbalance and spectral similarity, rather than model complexity. Improving the diversity and representativeness of the training data is therefore likely to have a greater impact on performance than further model tuning
+
+## 11. Limitation: Class bias?
+
+The model may a tendency to perform better on dominant classes such as deep water and vegetation, which are more abundant and have distinct spectral characteristics. In contrast, classes such as urban areas or beach regions may show lower classification accuracy, indicating a bias against less represented or spectrally similar classes.
+This bias is evident in the confusion matrix, where certain classes are more frequently misclassified, particularly between visually or spectrally similar categories. In Figure 3's confusion matrix: The results indicate a clear bias in the model towards certain classes, particularly class 0, which achieves the highest performance across all metrics (precision: 0.92, recall: 0.90, F1-score: 0.91). This suggests that the model is highly effective at identifying this class, likely due to its strong spectral distinction and high representation in the dataset. The difference between macro average (F1 = 0.64) and weighted average (F1 = 0.84) hifhlights this bias further, indicating that overall performance is inflated by strong results on majority classes.
+We shall keep this in mind as we interpret our results...
+
+## 12. Conclusion:
+This study applied a supervised machine learning approach to classify land cover types on Maldivian islands using satellite imagery. A Random Forest classifier was trained on pixel-based and patch-based features, and evaluated using a cross-island validation approach to assess generalisation to unseen environments.
+The results show that the model is able to accurately classify dominant land cover types, particularly deep water and vegetation, while performance is lower for more complex or less represented classes such as urban and sand. Confusion between spectrally similar classes highlights the limitations of using RGB imagery alone for fine-scale classification.
+Comparisons between patch sizes and model types indicate that neither increased spatial context (3×3 patches) nor alternative ensemble methods (Extra Trees) consistently improve performance. Instead, variation in accuracy across islands suggests that model performance is more strongly influenced by differences in land cover composition and the representativeness of the training data.
+Overall, the findings demonstrate that while machine learning models can effectively capture general spatial patterns in satellite imagery, their ability to generalise is limited by class imbalance and spectral similarity. Future work could focus on incorporating additional spectral bands, increasing training data diversity, or using more advanced models such as convolutional neural networks to improve classification performance.
+
+
+
+
 
