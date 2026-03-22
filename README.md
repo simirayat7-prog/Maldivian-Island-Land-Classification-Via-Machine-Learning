@@ -139,5 +139,12 @@ Overall, the findings demonstrate that while machine learning models can effecti
 
 
 
+### Reference list
+Copernicus Browser. (n.d.). Copernicus Browser. [online] Available at: https://browser.dataspace.copernicus.eu.
+MULHERN, O. (2020). Sea Level Rise Projection Map - Maldives. [online] Earth.org - Past | Present | Future. Available at: https://earth.org/data_visualization/sea-level-rise-by-2100-maldives/.
+
+
+
+
 
 
