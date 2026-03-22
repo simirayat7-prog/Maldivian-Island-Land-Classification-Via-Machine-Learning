@@ -18,6 +18,7 @@ In this READ ME:
 
    
  <img width="759" height="526" alt="image" src="https://github.com/user-attachments/assets/e2c6bc27-336d-4acc-b629-a608c75a3468" />
+ 
 *An image taken from (MULHERN, 2020) illustrating projected sea level rise at 2100 in the Maldives’ capital Male and its surrounding islands where 80% of the population reside. This highlights the importance of satellite data in monitoring the islands to see how they interact with changes associated with anthropogenic warming.*
 
 ## 1.	Problem Description: 
