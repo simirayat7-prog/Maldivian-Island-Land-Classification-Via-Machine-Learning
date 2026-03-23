@@ -15,6 +15,8 @@ In this READ ME:
    10. EVALUATION
    11. LIMITATION: CLASS BIAS
    12. CONCLUSION
+   13. ENVIRONMENTAL COST 
+   14. ENVIRONMENTAL IMPORTANCE
 
    
  <img width="759" height="526" alt="image" src="https://github.com/user-attachments/assets/e2c6bc27-336d-4acc-b629-a608c75a3468" />
@@ -22,7 +24,12 @@ In this READ ME:
 *An image taken from (MULHERN, 2020) illustrating projected sea level rise at 2100 in the Maldives’ capital Male and its surrounding islands where 80% of the population reside. This highlights the importance of satellite data in monitoring the islands to see how they interact with changes associated with anthropogenic warming.*
 
 ## 1.	Problem Description: 
-Small island environments like the Maldives are highly vulnerable to environmental change, including coastal erosion, urban expansion, and reef degradation. Accurate land cover classification is therefore important for environmental monitoring and management. Here we test the usability of Machine Learning Models (Specifically Random Forest Classifiers) on classifying these landscapes for ease of future monitoring. 
+The Maldives is a low-lying island nation that is highly vulnerable to environmental change due to sea-level rise, coastal erosion, and rapid urban development. Effective monitoring of land cover—such as vegetation, built-up areas, beaches, and surrounding water—is essential for understanding these changes and supporting sustainable management.
+
+However, traditional land cover mapping methods are time-consuming, labour-intensive, and often lack the spatial and temporal resolution needed to monitor small, dynamic island environments. While satellite imagery provides a valuable data source, accurately classifying complex coastal landscapes remains challenging due to spectral similarities between classes (e.g., sand vs. urban surfaces, shallow vs. deep water).
+
+This project aims to address these challenges by applying machine learning techniques, specifically a Random Forest classifier, to satellite imagery from Sentinel-2. By incorporating spatial context through 'patch-based feature extraction', the model seeks to improve classification accuracy and produce reliable land cover maps for Maldivian islands. Of course, this projected ability to produce these realiable maps is hindered by a limited computational power and future studies using higher resolution satellite data and multiple other Machine Learning models such as Convolutional Nueral Networks, will further advance this field of reseacrh.
+
 
 
 ## 2.	Remote Sensing Technique:
@@ -138,10 +145,33 @@ The results show that the model is able to accurately classify dominant land cov
 Comparisons between patch sizes and model types indicate that neither increased spatial context (3×3 patches) nor alternative ensemble methods (Extra Trees) consistently improve performance. Instead, variation in accuracy across islands suggests that model performance is more strongly influenced by differences in land cover composition and the representativeness of the training data.
 Overall, the findings demonstrate that while machine learning models can effectively capture general spatial patterns in satellite imagery, their ability to generalise is limited by class imbalance and spectral similarity. Future work could focus on incorporating additional spectral bands, increasing training data diversity, or using more advanced models such as convolutional neural networks to improve classification performance.
 
+## 13. Environmental Cost 
+
+The data behind this project has been sourced from the Senitnel-2 Satellite. This is one in thousands currently in orbit around are planet which not only which will one day be regarded as spacejunk but also hav negative environmental implications for the planet itself. This is because creation of these sattelites consumes mineral resources, rocket lanches emit green house gases as well as other pollutants and the sattelites themselves can cause light pollution in the nighsky impacting biology (Gaston et al., 2023). These are some of many trade offs for the insights we achieve into the changes and nature of our planet. Meaningful work must be done with this data to accomodate for the sacrafices our planet takes...
+
+
+## 14. Environmental Importance
+
+The environmental importance of this project is pretty significant, especially given how vulnerable the Maldives is to climate change. Since the islands are so low-lying, even small changes in land cover—like coastal erosion or expansion of urban areas—can have a big impact on both natural ecosystems and the people living there.
+
+One key issue is that coastlines in the Maldives are constantly changing due to wave action, storms, and sea-level rise (Amores et al., 2021). If beaches are eroding or being replaced by infrastructure, it can increase flood risk and reduce natural protection from storms. By accurately mapping land cover over time, this project can help identify where these changes are happening and how quickly they are occurring.
+
+Another important aspect is the impact on ecosystems, particularly vegetation and coral reef environments. Coastal vegetation can help stabilise shorelines, while coral reefs act as natural barriers/buffers that reduce wave energy. If these areas are misclassiffied or not properly monitored, it becomes harder to detect environmental degradation. Improving classification of shallow vs deep water is also useful for understanding reef health, which is critical as reefs are highly sensitive to warming oceans and bleaching events.
+
+There is also a human dimension to consider. The Maldives has limitted land available, so urban expansion often comes at the expense of natural land cover. Without accurate and up to date maps, it is difficult for planners to balance development with environmental protection. This project contributes to that by providing a more automated and scalable way of generating land cover data, which could support better planning decisions.
+
+Overall, the environmental “cost” of not improving these methods is quite high as poor monitoring can lead to delayed responses to environmental change, increased vulnerability to hazards, and loss of important ecosystems. By improving classification accuracy using machine learning, this project helps provide more reliable data, which is essential for managing and protecting such a fragile environment.
+
+
 
 
 ### Reference list
+Amores, A., Marcos, M., Pedreros, R., Le Cozannet, G., Lecacheux, S., Rohmer, J., Hinkel, J., Gussmann, G., van der Pol, T., Shareef, A. and Khaleel, Z. (2021). Coastal Flooding in the Maldives Induced by Mean Sea-Level Rise and Wind-Waves: From Global to Local Coastal Modelling. Frontiers in Marine Science, 8. doi:https://doi.org/10.3389/fmars.2021.665672.
+
 Copernicus Browser. (n.d.). Copernicus Browser. [online] Available at: https://browser.dataspace.copernicus.eu.
+
+Gaston, K.J., Anderson, K., Shutler, J.D., Brewin, R.J. and Yan, X. (2023). Environmental impacts of increasing numbers of artificial space objects. Frontiers in Ecology and the Environment, [online] 21(6), pp.289–296. doi:https://doi.org/10.1002/fee.2624.
+
 MULHERN, O. (2020). Sea Level Rise Projection Map - Maldives. [online] Earth.org - Past | Present | Future. Available at: https://earth.org/data_visualization/sea-level-rise-by-2100-maldives/.
 
 
